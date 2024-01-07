@@ -1,0 +1,26 @@
+{
+  "name": "puhelinluettelobackend",
+  "homepage": "http://hubster1.github.io/demo1",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1",
+    "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd ../puhelinluettelo && npm run build && @powershell Copy-Item dist -Recurse ../puhelinluettelobackend && cd ../puhelinluettelobackend",
+    "deploy": "npm run build:ui && gh-pages -d ./"
+  },
+  "author": "Kimmo Tomminen",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "gh-pages": "^6.1.1",
+    "http": "^0.0.1-security",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
