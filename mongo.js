@@ -1,15 +1,22 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 const args = process.argv
-if (args.length < 3) {
+let pass = ''
+console.log("args", args)
+console.log("env", process.env)
+console.log('uri', process.env.MONGOURI)
+
+if (!process.env.MONGOURI && args.length < 3) {
     console.log('no password')
     process.exit(1)
     return
 }
+else if (!process.env.MONGOURI) {
+    pass = args[2]
+}
 
-const pass = args[2]
-
-const url = `mongodb+srv://kimmo7024:${pass}@cluster0.nmxeydj.mongodb.net/demo1?retryWrites=true&w=majority`
+const url = process.env.MONGOURI || `mongodb+srv://demo1-user:${pass}@cluster0.nmxeydj.mongodb.net/demo1?retryWrites=true&w=majority`
 
 mongoose.connect(url)
 

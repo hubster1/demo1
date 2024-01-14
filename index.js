@@ -7,6 +7,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('dist'))
 
 morgan.token('post-response', function (req) {
     return req.method === 'POST'
@@ -194,7 +195,7 @@ app.post('/api/persons', (req, resp, next) => {
     //list = list.concat(newPerson)
 })
 
-app.use((err, req, resp) => {
+app.use((err, req, resp, next) => {
     console.log(err)
 
     if (err.name === 'CastError') {
